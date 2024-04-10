@@ -1,10 +1,9 @@
 services:
   server:
-    build: .
+    image: ghcr.io/lukastrkan/pickup-point-widget:latest
     ports:
       - 8000:8000
     env_file:
       - .env
   supercluster:
-    build:
-      context: cluster-microservice
+    image: ghcr.io/lukastrkan/cluster-microservice:latest
