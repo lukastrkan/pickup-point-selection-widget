@@ -38,4 +38,4 @@ RUN cp /app/app/index.html /app/app/templates/index.html
 EXPOSE 8000
 
 # Run the application.
-CMD python3 manage.py runserver 0.0.0.0:8000
+CMD bash start.sh
