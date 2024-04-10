@@ -27,3 +27,24 @@ jobs:
             run: |
               docker build . --tag ghcr.io/lukastrkan/pickup-point-widget:latest
               docker push ghcr.io/lukastrkan/pickup-point-widget:latest
+      push-cluster-image:
+        runs-on: ubuntu-latest        
+        permissions:
+          contents: read
+          packages: write
+        steps:
+          - name: 'Checkout GitHub Action'
+            uses: actions/checkout@main
+
+          - name: 'Login to GitHub Container Registry'
+            uses: docker/login-action@v1
+            with:
+              registry: ghcr.io
+              username: ${{github.actor}}
+              password: ${{secrets.GITHUB_TOKEN}}
+
+          - name: 'Build cluster service'
+            working-directory: ./cluster-microservice
+            run: |
+              docker build . --tag ghcr.io/lukastrkan/cluster-microservice:latest
+              docker push ghcr.io/lukastrkan/cluster-microservice:latest
