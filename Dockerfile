@@ -6,6 +6,10 @@ RUN npm install
 RUN npm run build
 
 FROM python:3.12.1-slim as base
+LABEL org.opencontainers.image.source=https://github.com/lukastrkan/pickup-point-widget
+LABEL org.opencontainers.image.description="Django backend + built React frontend"
+LABEL org.opencontainers.image.licenses=MIT
+
 
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
