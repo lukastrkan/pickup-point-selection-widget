@@ -7,8 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
-      push-store-image:
+      push-widget-image:
         runs-on: ubuntu-latest
+        permissions:
+          contents: read
+          packages: write
         steps:
           - name: 'Checkout GitHub Action'
             uses: actions/checkout@main
@@ -20,7 +23,7 @@ jobs:
               username: ${{github.actor}}
               password: ${{secrets.GITHUB_TOKEN}}
 
-          - name: 'Build Inventory Image'
+          - name: 'Build widget'
             run: |
               docker build . --tag ghcr.io/lukastrkan/pickup-point-widget:latest
               docker push ghcr.io/lukastrkan/pickup-point-widget:latest
