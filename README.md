@@ -17,7 +17,7 @@ Web widget for selecting a delivery service branch created as part of a bachelor
 
 ## Demo
 
-TODO
+[Demo e-shop](https://demo.ltrk.dev/) (accessible from UHK network)
 
 
 ## Installation
