@@ -6,7 +6,7 @@ Web widget for selecting a delivery service branch created as part of a bachelor
 
 ## Tech Stack
 
-**Client:** React, Bootstrap, React Leafler, Apollo Clien
+**Client:** React, Bootstrap, React Leafler, Apollo Client
 
 **Server:** Django, Graphene
 
@@ -16,9 +16,11 @@ Web widget for selecting a delivery service branch created as part of a bachelor
 
 
 ## Demo
+ [Demo e-shop](https://demo.ltrk.dev/)
 
-[Demo e-shop](https://demo.ltrk.dev/) (accessible from UHK network)
+ [widget page](https://widget.ltrk.dev/)
 
+ (accessible from UHK network)
 
 ## Installation
 
