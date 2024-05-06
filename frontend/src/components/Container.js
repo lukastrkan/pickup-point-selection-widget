@@ -132,21 +132,25 @@ export const Container = (props) => {
                                              selectedBranchType={selectedBranchType} locationsData={clustersData}
                                              updateBounds={updateBounds}/>
 
-    return (<Row className={'gx-0'}>
-        <Col xs={12} md={3} className={'d-flex flex-column'} style={{height: '100vh'}}>
+    return (<div className={'container-grid'}>
+        <div className={'menu'}>
             <div>
-                <BranchTypeSelect branchTypes={branchTypes} selectBranchType={setSelectedBranchType} staticBranchType={staticBranchType}/>
+                <BranchTypeSelect branchTypes={branchTypes} selectBranchType={setSelectedBranchType}
+                                  staticBranchType={staticBranchType}/>
                 <Search handleSearch={setSearchTerm}/>
             </div>
-            <div className={'flex-grow-1 overflow-auto'}>
+            <div className={'point-list'}>
                 <PointList points={pointList} setSelectedPoint={parseSetSelectedPoint}/>
             </div>
-        </Col>
-        <Col xs={12} md={9}>
+        </div>
+        <div className={'map'}>
             {branchTypes.length > 0 ? mapContainer : <h1>Loading...</h1>}
+        </div>
+        <div className={'point-detail'}>
             <PointDetail id={selectedPoint} selectCallback={setSelectedPoint}/>
-        </Col>
-    </Row>);
+        </div>
+
+    </div>);
 
 
 }

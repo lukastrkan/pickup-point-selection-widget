@@ -50,3 +50,52 @@ body {
 .marker-cluster span {
     line-height: 30px;
 }
+
+.container-grid {
+    display: grid;
+}
+
+.menu {
+    grid-area: menu;
+}
+
+.point-list {
+    overflow-y: auto;
+}
+
+.map {
+    grid-area: map;
+}
+
+.point-detail {
+    grid-area: point;
+}
+
+@media (min-width: 768px) {
+    .container-grid {
+        grid-template-areas:
+        "menu map"
+        "menu map"
+        "menu point";
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .menu {
+        height: 100vh;
+    }
+
+    .point-list{
+        height: 90%;
+    }
+}
+
+@media (max-width: 768px){
+    .container-grid {
+        grid-template-areas:
+        "map"
+        "point"
+        "menu";
+    }
+}
+
+
