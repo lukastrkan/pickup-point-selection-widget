@@ -20,7 +20,6 @@ Web widget for selecting a delivery service branch created as part of a bachelor
 
  [widget page](https://widget.ltrk.dev/)
 
- (accessible from UHK network)
 
 ## Installation
 
