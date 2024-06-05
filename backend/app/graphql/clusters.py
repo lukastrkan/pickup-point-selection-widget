@@ -1,4 +1,3 @@
-import requests
 from django.db.models import Q
 
 from app.graphql.coordinates import Coordinates, CoordinatesInput
@@ -6,6 +5,8 @@ from app.graphql.coordinates import Coordinates, CoordinatesInput
 from branchData.models import Branch
 
 import graphene
+
+from pysupercluster import PySupercluster
 
 
 class Cluster(graphene.ObjectType):
@@ -63,9 +64,11 @@ class ClustersQuery(graphene.ObjectType):
         vals = branches.values('id', 'latitude', 'longitude', 'branch_type_id')
         points = convert_to_geojson(vals)
 
-        r = requests.post('http://supercluster:5000/cluster', json={'points': points, 'zoom': zoom})
+        index = PySupercluster(0, 14, 2, 240, 512, 64)
+        index.load(points)
+        clusters = index.get_clusters([-180, -85, 180, 85], zoom)
 
-        for data in r.json():
+        for data in clusters:
             branch_id = None
             cluster = False
             point_count = 1
@@ -76,8 +79,8 @@ class ClustersQuery(graphene.ObjectType):
                 cluster = data['properties']['cluster']
             if 'point_count' in data['properties']:
                 point_count = data['properties']['point_count']
-            if 'zoom' in data['properties']:
-                cluster_zoom = data['properties']['zoom']
+            if 'cluster_id' in data['properties']:
+                cluster_zoom = index.get_cluster_expansion_zoom(data['properties']['cluster_id'])
 
             yield Cluster(latitude=data['geometry']['coordinates'][1], longitude=data['geometry']['coordinates'][0],
                           id=branch_id,
